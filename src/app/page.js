@@ -2,22 +2,9 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { FaHeartbeat, FaBrain, FaBone, FaBaby, FaTooth } from 'react-icons/fa';
-import { GiMedicines } from 'react-icons/gi';
-import Lottie from 'lottie-react';
+import Image from 'next/image';
 
 export default function Home() {
-  const doctorAnimation = {
-    v: "5.5.7",
-    fr: 60,
-    ip: 0,
-    op: 180,
-    w: 400,
-    h: 400,
-    assets: [],
-    layers: []
-  };
-
   return (
     <main>
       {/* Banner Section */}
@@ -79,7 +66,6 @@ export default function Home() {
               className="hidden md:flex justify-center items-center"
             >
               <div className="relative">
-                {/* Main card */}
                 <div className="bg-white rounded-3xl p-8 shadow-2xl w-80">
                   <div className="flex items-center gap-4 mb-6">
                     <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center text-3xl">
@@ -100,7 +86,6 @@ export default function Home() {
                   </button>
                 </div>
 
-                {/* Floating cards */}
                 <motion.div
                   animate={{ y: [0, -10, 0] }}
                   transition={{ repeat: Infinity, duration: 3 }}
@@ -140,22 +125,24 @@ export default function Home() {
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
             {[
-              { name: "Cardiology", icon: <FaHeartbeat />, color: "bg-red-50", iconColor: "text-red-500" },
-              { name: "Neurology", icon: <FaBrain />, color: "bg-purple-50", iconColor: "text-purple-500" },
-              { name: "Orthopedics", icon: <FaBone />, color: "bg-orange-50", iconColor: "text-orange-500" },
-              { name: "Pediatrics", icon: <FaBaby />, color: "bg-yellow-50", iconColor: "text-yellow-500" },
-              { name: "Dermatology", icon: <GiMedicines />, color: "bg-green-50", iconColor: "text-green-500" },
-              { name: "Dentistry", icon: <FaTooth />, color: "bg-blue-50", iconColor: "text-blue-500" },
+              { name: "Cardiology", img: "/specializations/cardiology.jpg", color: "bg-red-50" },
+{ name: "Neurology", img: "/specializations/neurology.jpg", color: "bg-purple-50" },
+{ name: "Orthopedics", img: "/specializations/orthopedics.jpg", color: "bg-orange-50" },
+{ name: "Pediatrics", img: "/specializations/pediatrics.jpg", color: "bg-yellow-50" },
+{ name: "Dermatology", img: "/specializations/dermatology.jpg", color: "bg-green-50" },
+{ name: "Dentistry", img: "/specializations/dentistry.jpg", color: "bg-blue-50" },
             ].map((spec, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
-                className={`${spec.color} rounded-2xl p-6 text-center shadow-md hover:shadow-xl hover:-translate-y-1 transition cursor-pointer`}
+                className={`${spec.color} rounded-2xl overflow-hidden shadow-md hover:shadow-xl hover:-translate-y-1 transition cursor-pointer`}
               >
-                <div className={`text-5xl mb-3 flex justify-center ${spec.iconColor}`}>{spec.icon}</div>
-                <h3 className="text-sm font-semibold text-gray-700">{spec.name}</h3>
+                <img src={spec.img} alt={spec.name} className="w-full h-32 object-cover"/>
+                <div className="p-3 text-center">
+                  <h3 className="text-sm font-semibold text-gray-700">{spec.name}</h3>
+                </div>
               </motion.div>
             ))}
           </div>
