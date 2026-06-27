@@ -108,6 +108,7 @@ export default function FindDoctors() {
                   <img
                     src={doctor.profileImage || 'https://i.ibb.co/MBtjqXQ/no-avatar.gif'}
                     alt={doctor.doctorName}
+                    referrerPolicy="no-referrer"
                     className="w-24 h-24 rounded-full object-cover mx-auto border-4 border-white shadow-md"
                   />
                   {doctor.verificationStatus === 'verified' && (
